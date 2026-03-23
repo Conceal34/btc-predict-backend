@@ -85,3 +85,32 @@ class TickerInfoResponse(BaseModel):
 def root():
     return {"message": "PriceOracle API is running"}
 
+
+@app.get("/ticker/{symbol}", response_model=TickerInfoResponse)
+def get_ticker_info(symbol: str):
+    symbol = symbol.upper()
+    if symbol not in SUPPORTED_TICKERS:
+        raise HTTPException(status_code=400, detail=f"Unsupported ticker. Choose from: {SUPPORTED_TICKERS}")
+
+    try:
+        info = yf.Ticker(symbol).info
+        hist = yf.download(symbol, period="8d", progress=False)
+        if isinstance(hist.columns, pd.MultiIndex):
+            hist.columns = hist.columns.get_level_values(0)
+
+        current = float(hist["Close"].iloc[-1])
+        prev    = float(hist["Close"].iloc[-8]) if len(hist) >= 8 else current
+        chg_pct = (current - prev) / prev * 100
+
+        return TickerInfoResponse(
+            ticker        = symbol,
+            name          = info.get("shortName", symbol),
+            current_price = current,
+            change_pct    = round(chg_pct, 2),
+            high_52w      = float(info.get("fiftyTwoWeekHigh", 0)),
+            low_52w       = float(info.get("fiftyTwoWeekLow",  0)),
+            volume        = float(info.get("volume", 0) or 0),
+        )
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
