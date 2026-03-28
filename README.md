@@ -1,71 +1,74 @@
-```markdown
+```
+```
 # PriceOracle — BTC Predict Backend
 
-A FastAPI backend that serves **LSTM-based price predictions** for Bitcoin and Ethereum. It pulls live market data from Yahoo Finance, runs it through pre-trained Keras/TensorFlow models, and returns historical context, test-set accuracy, and a configurable future forecast — all in one JSON response.
+A FastAPI backend that serves LSTM-based price predictions for Bitcoin and Ethereum. It pulls live market data from Yahoo Finance, runs it through pre-trained Keras/TensorFlow models, and returns historical context, test-set accuracy, and a configurable future forecast — all in one JSON response.
 
-> **Disclaimer:** This project is for educational purposes only. Nothing here constitutes financial advice.
-
----
-
+> Disclaimer: This project is for educational purposes only. Nothing here constitutes financial advice.
+```
+```
 # Features
-
 - **Live market data** fetched in real-time via `yfinance`
 - **LSTM neural network** predictions for `BTC-USD` and `ETH-USD`
 - **Autoregressive forecasting** — each predicted day feeds into the next
 - **Test-set evaluation** with MAE and RMSE metrics on every forecast call
 - **Moving averages** (MA100, MA365) via the history endpoint
 - **CORS-configured** for seamless frontend integration
-
----
-
-## 🗂️ Project Structure
+```
 
 ```
+## 🗂️ Project Structure
+```
 btc-predict-backend/
-├── main.py                  # FastAPI app — all routes & prediction logic
-├── model_training.ipynb     # Jupyter notebook to train & save models
+├── main.py                 # FastAPI app — all routes & prediction logic
+├── model_training.ipynb    # Jupyter notebook to train & save models
 ├── requirements.txt
-├── runtime.txt              # python-3.12.12
-└── models/                  # ⚠️ Not committed — generate with the notebook
+├── runtime.txt             # python-3.12.12
+└── models/                 # ⚠️ Not committed — generate with the notebook
     ├── BTC-USD_lstm.keras
     ├── BTC-USD_scaler.pkl
     ├── ETH-USD_lstm.keras
     └── ETH-USD_scaler.pkl
 ```
+##  Setup
 
-
-
-## Setup
-```
 **Prerequisites:** Python 3.12, pip
 
+**1. Clone & enter the repo**
 ```bash
-```
-# Clone & enter the repo
 git clone https://github.com/Conceal34/btc-predict-backend.git
 cd btc-predict-backend
+```
 
-# Create a virtual environment
+**2. Create a virtual environment**
+```bash
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
+```
 
-# Install dependencies
+**3. Install dependencies**
+```bash
 pip install -r requirements.txt
+```
 
-# Set up your environment variables
+**4. Set up your environment variables**
+```bash
 echo "FRONTEND_URL=http://localhost:3000" > .env
+```
 
-# Train the models first (required!)
+**5. Train the models first (required!)**
+```bash
 jupyter notebook model_training.ipynb
+```
 
-# Start the server
+**6. Start the server**
+```bash
 uvicorn main:app --reload --port 8000
-
+```
 
 > Interactive API docs available at **`http://localhost:8000/docs`**
-
----
-
+```
+```
 ## Environment Variables
 
 Create a `.env` file in the project root:
@@ -78,11 +81,8 @@ FRONTEND_URL=http://localhost:3000
 |----------------|-------------------------|-----------------------------------|
 | `FRONTEND_URL` | `http://localhost:3000` | Origin allowed by CORS middleware |
 
----
-
-
-
-
+```
+```
 # API Endpoints
 
 ### `GET /`
