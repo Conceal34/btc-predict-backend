@@ -16,7 +16,7 @@ A FastAPI backend that serves LSTM-based price predictions for Bitcoin and Ether
 
 
 
-## 🗂️ Project Structure
+## Project Structure
 ```
 btc-predict-backend/
 ├── main.py                 # FastAPI app — all routes & prediction logic
