@@ -1,12 +1,11 @@
-```
-```
+
 # PriceOracle — BTC Predict Backend
 
 A FastAPI backend that serves LSTM-based price predictions for Bitcoin and Ethereum. It pulls live market data from Yahoo Finance, runs it through pre-trained Keras/TensorFlow models, and returns historical context, test-set accuracy, and a configurable future forecast — all in one JSON response.
 
 > Disclaimer: This project is for educational purposes only. Nothing here constitutes financial advice.
-```
-```
+
+
 # Features
 - **Live market data** fetched in real-time via `yfinance`
 - **LSTM neural network** predictions for `BTC-USD` and `ETH-USD`
@@ -14,9 +13,9 @@ A FastAPI backend that serves LSTM-based price predictions for Bitcoin and Ether
 - **Test-set evaluation** with MAE and RMSE metrics on every forecast call
 - **Moving averages** (MA100, MA365) via the history endpoint
 - **CORS-configured** for seamless frontend integration
-```
 
-```
+
+
 ## 🗂️ Project Structure
 ```
 btc-predict-backend/
@@ -24,7 +23,7 @@ btc-predict-backend/
 ├── model_training.ipynb    # Jupyter notebook to train & save models
 ├── requirements.txt
 ├── runtime.txt             # python-3.12.12
-└── models/                 # ⚠️ Not committed — generate with the notebook
+└── models/
     ├── BTC-USD_lstm.keras
     ├── BTC-USD_scaler.pkl
     ├── ETH-USD_lstm.keras
@@ -67,8 +66,8 @@ uvicorn main:app --reload --port 8000
 ```
 
 > Interactive API docs available at **`http://localhost:8000/docs`**
-```
-```
+
+
 ## Environment Variables
 
 Create a `.env` file in the project root:
@@ -81,8 +80,8 @@ FRONTEND_URL=http://localhost:3000
 |----------------|-------------------------|-----------------------------------|
 | `FRONTEND_URL` | `http://localhost:3000` | Origin allowed by CORS middleware |
 
-```
-```
+
+
 # API Endpoints
 
 ### `GET /`
