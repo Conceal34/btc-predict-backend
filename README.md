@@ -9,12 +9,12 @@ A FastAPI backend that serves **LSTM-based price predictions** for Bitcoin and E
 
 # Features
 
-- 📈 **Live market data** fetched in real-time via `yfinance`
-- 🧠 **LSTM neural network** predictions for `BTC-USD` and `ETH-USD`
-- 🔁 **Autoregressive forecasting** — each predicted day feeds into the next
-- 📊 **Test-set evaluation** with MAE and RMSE metrics on every forecast call
-- 📉 **Moving averages** (MA100, MA365) via the history endpoint
-- 🌐 **CORS-configured** for seamless frontend integration
+- **Live market data** fetched in real-time via `yfinance`
+- **LSTM neural network** predictions for `BTC-USD` and `ETH-USD`
+- **Autoregressive forecasting** — each predicted day feeds into the next
+- **Test-set evaluation** with MAE and RMSE metrics on every forecast call
+- **Moving averages** (MA100, MA365) via the history endpoint
+- **CORS-configured** for seamless frontend integration
 
 ---
 
@@ -74,11 +74,10 @@ Create a `.env` file in the project root:
 FRONTEND_URL=http://localhost:3000
 ```
 
-|------------------------------------------------------------------------------|
 | Variable       | Default                 | Description                       |
 |----------------|-------------------------|-----------------------------------|
 | `FRONTEND_URL` | `http://localhost:3000` | Origin allowed by CORS middleware |
-|------------------------------------------------------------------------------|
+
 ---
 
 
@@ -161,7 +160,6 @@ Full closing price history with 100-day and 365-day moving averages.
 
 
 # Dependencies
-|------------------------------|
 | Package             |Version |
 |---------------------|--------|
 | `fastapi`           | 0.115.0|
@@ -174,7 +172,6 @@ Full closing price history with 100-day and 365-day moving averages.
 | `keras`             | ≥2.10.0|
 | `tensorflow`        | ≥2.10.0|
 | `python-multipart`  | 0.0.9  |
-|------------------------------|
 
 # Deployment
 
